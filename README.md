@@ -1,37 +1,34 @@
-## Welcome to GitHub Pages
+基于jekyll博客应用主题
+===
 
-You can use the [editor on GitHub](https://github.com/paichin/paichin.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+pithy是一款适用于jekyll的博客应用主题，基于bootstrap前端框架开发。本着简约的视觉效果设计，目的是希望博客的浏览者能够更多的看到博客内容。
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+使用说明
+===
 
-### Markdown
+本主题是自由，免费，开源的，你可以克隆为新的仓库作为自己的博客。当然，在克隆仓库时为本主题加颗星，在使用时注明power by pithy，那将是对我最大的支持和鼓励。
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+主题效果
+===
+- 首页
+- 
+![首页](http://7xlgu7.com1.z0.glb.clouddn.com/pithy-index.jpg)
 
-```markdown
-Syntax highlighted code block
+- 列表
+- 
+![列表](http://7xlgu7.com1.z0.glb.clouddn.com/pithy-list.jpg)
 
-# Header 1
-## Header 2
-### Header 3
+- 文章
+- 
+![文章](http://7xlgu7.com1.z0.glb.clouddn.com/pithy-post.jpg)
 
-- Bulleted
-- List
+反馈
+===
 
-1. Numbered
-2. List
+在你浏览或使用本主题时，发现问题或者是有好的建议，希望能够在这里给予反馈。
 
-**Bold** and _Italic_ and `Code` text
+[New Issue](https://github.com/guovz/pithy/issues/new)
 
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/paichin/paichin.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+License
+===
+[MIT License](https://github.com/guovz/pithy/blob/gh-pages/LICENSE.md)
