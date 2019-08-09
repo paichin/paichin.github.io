@@ -4,7 +4,7 @@ version: "1.0"
 permalink: /:year/:month/:day/:title/
 
 # 站点设置
-title: "Paichin"
+title: "风满楼"
 email: paichin@hotmail.com
 description: "Paichin's Blog"
 keywords: "Paichin"
