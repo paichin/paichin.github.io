@@ -1,27 +1,21 @@
 ---
 layout: page
 title: about
-tagline: 关于我 ~
+tagline: 要有出世的心态，才能做入世的事业。
 sitetime: display
 permalink: /about.html
 ---
 
 ## #作者
 
-你可以通过以下方式联系作者
+paichin,毕业于Paris Diderot数学系，练习时长两年的数据挖掘工程师。
+喜欢机器学习,python,spark,MapReduce。
+博客内容多为知识点整理，会引用允许转载的文章，标明出处。如有侵权请联络，谢谢。
 
-QQ: 1316341442
+你可以通过以下方式联系作者：
 
-Email: <a href="mailto:lk@atlinker.cn">lk@atlinker.cn</a>
+QQ: 516886177
 
-Github: [link9596](https://github.com/link9596)
+Email: <a href="paichin@hotmail.com">paichin@hotmail.com</a>
 
-## #捐助我
-
-本主题使用免费，也是作者长期工作的结晶，如果你喜欢主题\~想支持作者，欢迎给作者捐赠~
-
-<center>扫下方付款二维码即可向作者捐赠!</center>
-
-![wechat](https://atlinker.cn/pay/wechat.png)
-
-![pay](https://atlinker.cn/pay/apay.png)
+weibo: [paichin](https://www.weibo.com/paichin)
