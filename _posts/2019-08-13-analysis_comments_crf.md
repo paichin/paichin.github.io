@@ -106,7 +106,53 @@ Person是不能接在I-Organization之后出现的。这样我们意识到生成
 ![截图](https://paichin.github.io/assets/images4post/9.png)<br>
 
 上图即为一个转移概率矩阵的例子。从中发现转移概率矩阵可学得很多信息，如句子从是以’B’或者’O’开始。那么LSTM和CRF层的打分是如何结合的呢？对于输入语句：<br>
+$$
+X=(x_1,x_2,...,x_n)
+$$
+<br>和一个预测序列：<br>
+$$
+y=(y_1,y_2,...,y_n)
+$$
+<br>模型得出的分数为：<br>
+$$
+s(X,y)=\sum_{i=0}^{n}A_{y_i,y_{i+1}}+\sum_{i=1}^{n}P_{i,y_{i}}
+$$
+<br>其中A的部分为从
+$$
+y_i
+$$
+到
+$$
+y_{i+1}
+$$
+的转移概率，而P的部分为biLSTM得出的第i个词的标签为
+$$
+y_i
+$$
+的概率。在打分之后，对于所有可能的标签序列做softmax:<br>
+$$
+P(y|X)=\frac{e^{s(X,y)}}{\sum_{\tilde{y}∈Y_X}e^{s(X,\tilde{y})}}
+$$
 
+<br>对以上概率取log，即得在训练时需maximize的式子：
+
+<br>
+$$
+log(p(y|X))=s(X,y)-log(\sum_{\tilde{y}∈Y_X}e^{s(X,\tilde{y})})
+$$
+<br>显然，最终预测的标签结果为：<br>
+$$
+y^*=argmax_{\tilde{y}∈Y_X}s(X,\tilde{y})
+$$
+<br>
+
+以上理论为以下论文3中提出。但是在我的代码中，是用crf直接使用bilstm的结果进行预测，而不是用上面两者相结合的打分模式。
+
+<br>
+
+代码参考：https://github.com/BrambleXu/aspect-term-extraction/blob/master/notebooks/bi-lstm-crf-embedding.ipynb
+
+<br>
 
 
 References:
