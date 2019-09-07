@@ -129,14 +129,12 @@ $$
 $$
 y_i
 $$
-的概率。在打分之后，对于所有可能的标签序列做softmax:<br>
+的概率。在打分之后，对于所有可能的标签序列做softmax:
 $$
 P(y|X)=\frac{e^{s(X,y)}}{\sum_{\tilde{y}∈Y_X}e^{s(X,\tilde{y})}}
 $$
 
 <br>对以上概率取log，即得在训练时需maximize的式子：
-
-<br>
 $$
 log(p(y|X))=s(X,y)-log(\sum_{\tilde{y}∈Y_X}e^{s(X,\tilde{y})})
 $$
