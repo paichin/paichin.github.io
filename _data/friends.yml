@@ -3,10 +3,10 @@
   url: https://atlinker.cn/
   describe: Link's Blog
 
-- name: Daily
+  - name: Ops
   image: https://atlinker.cn/avatar/default.png
-  url: https：//linker.ml/daily/
-  describe: Daily
+  url: https://sutang.org/
+  describe: 小酥
 
 # - name: Links Name
 #  image: http://example.com/img.png
