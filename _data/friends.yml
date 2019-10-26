@@ -1,8 +1,3 @@
-- name: Link
-  image: https://atlinker.cn/avatar/avatar.png
-  url: https://atlinker.cn/
-  describe: Link's Blog
-
 - name: Ops
   image: https://paichin.github.io/assets/images4post/link_0.jpg
   url: https://sutang.org/
