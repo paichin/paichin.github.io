@@ -77,9 +77,33 @@ spark通过DAG图可以实现良好的容错。<br>
 
 代码量更少。<br>
 
-未完待续……
+* 简述MR编程模型
+
+首先map task会从本地文件系统读取数据，转换成key-value形式的键值对集合，使用的是hadoop内置的数据类型。将键值对集合输入mapper进行业务处理过程，将其转换成需要的key-value。
+
+在输出之后会进行一个partition分区操作，默认使用的是hashpartitioner（也可通过重写getpartition方法自定义分区）。之后会对key进行进行sort排序，grouping分组操作将相同key的value合并分组输出之后进行一个combiner归约操作，其实就是一个本地段的reduce预处理，以减小后面shuffle和reducer的工作量。
+
+reduce task会通过网络将各个数据收集进行reduce处理，最后将数据保存或者显示，结束整个job。
+<br>
+
+* hadoop和spark的shuffle
+
+详细介绍在[这里](https://www.cnblogs.com/itboys/p/9226479.html)
+
+* hadoop和spark的shuffle相同之处
+
+两者并没有大的差别，都是将mapper（Spark: ShuffleMapTask）的输出进行partition，不同的partition送到不同的reducer（Spark里reducer可能是下一个stage里的ShuffleMapTask，也可能是ResultTask）
+
+Reducer以内存作缓冲区，边shuffle边aggregate数据，等到数据 aggregate以后进行reduce()。
+
+* hadoop和spark的shuffle差异
+
+Hadoop MapReduce是sort-based，进入combine()和reduce()的records 必须先sort。mapper对每段数据先做排序，reducer的shuffle对排好序的每段数据做归并。
+
+Spark默认选择hash-based，通常使用HashMap来对shuffle来的数据进行aggregate，不提前排序。如果用户需要经过排序的数据，可以用sortByKey()。
 
 <br>
+未完待续。有两张图挺好的，先贴在下面吧：
 
 ![图1](https://paichin.github.io/assets/images4post/2_1.jpg)
 ![图1](https://paichin.github.io/assets/images4post/2_2.jpg)
