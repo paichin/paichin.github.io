@@ -1,5 +1,5 @@
 ---
-title: 力扣常见算法问题
+title: Leetcode常见算法问题
 layout: post
 categories: 'Leetcode'
 tags: ''
