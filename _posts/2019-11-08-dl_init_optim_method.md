@@ -15,11 +15,11 @@ tags: ''
 
 我们熟悉的权值初始化方法为标准正态分布初始化。现在设置一个输入x，设它为512维，由标准正态分布所产生。对应的每层权重矩阵512*512维，所有权值随机由标准正态分布生成。
 
-![图片](7.png)
+![图片](https://paichin.github.io/assets/images4post/4_7.png)
 
 激活输出在29个网络层中爆炸，看来是我们设置的权值太大了。试着把权值缩小到标准差为0.01
 
-![图片](8.png)
+![图片](https://paichin.github.io/assets/images4post/4_8.png)
 
 激活输出完全消失了。看来，初始的权值太大或太小，都会影响神经网络的训练。
 
@@ -27,15 +27,15 @@ tags: ''
 
 对于上例的矩阵乘法，可以证明，平均而言，它的标准偏差是$\sqrt{512}$。
 
-![图片](9.png)
+![图片](https://paichin.github.io/assets/images4post/4_9.png)
 
 这样看来，下一层的输入数据的标准差将为$\sqrt{512}$，而且这个偏差在每一层都会不断累积，难怪29层时会有输出爆炸的现象了。为了避免这一点，我们把权重矩阵中的每个值都变为原来的$\frac{1}{\sqrt{512}}$，使得输出数据的标准偏差总是为1，这样就不会发生输出偏差的累积了。测试这个想法
 
-![图片](10.png)
+![图片](https://paichin.github.io/assets/images4post/4_10.png)
 
 输出的偏差的确变为1了。用新的权值重新训练100层网络
 
-![图片](11.png)
+![图片](https://paichin.github.io/assets/images4post/4_11.png)
 
 成功！我们的层输出既没有爆炸也没有消失，即使在100个层之后也是如此。
 
@@ -44,17 +44,17 @@ tags: ''
 
 直到几年前，大多数常用的激活函数都是关于给定值的对称函数，其范围渐进地接近于与这个中点正负一定距离的值。双曲正切函数和softsign函数就是这类激活函数的典型的例子。
 
-![图片](12.png)
+![图片](https://paichin.github.io/assets/images4post/4_12.png)
 
 在我们假设的100层网络的每一层之后添加一个双曲正切激活函数，然后看看当我们使用上面得到的权值初始化方案时发生了什么。
 
-![图片](13.png)
+![图片](https://paichin.github.io/assets/images4post/4_13.png)
 
 第100层激活输出的标准差约为0.06。虽然比较小，至少还没有完全消失。
 
 回顾曾经，在2010年时，我们的权重初始化方法比现在更加传统。当Xavier Glorot Yoshua Bengio发表了具有里程碑意义的论文题为Understanding the difficulty of training deep feedforward neural networks，他们实验中的初始化权重为(-1,1)的均匀分布，然后乘以1/$\sqrt{n}$。事实证明，这样的方法并不可取，梯度几乎完全消失了。
 
-![图片](14.png)
+![图片](https://paichin.github.io/assets/images4post/4_14.png)
 
 这种糟糕的性能实际上促使Glorot和Bengio提出了他们自己的权重初始化策略，他们在论文中称之为“normalized initialization”，现在通常称为“Xavier初始化”。
 
@@ -107,7 +107,7 @@ $$
 
 ### 2.Momentum（动量）<br>
 首先针对以上局限中的第一点和第二点，即收敛方面的问题提出了动量的概念。<br>
-![图片](1.png)
+![图片](https://paichin.github.io/assets/images4post/4_1.png)
 SGD在ravine的情况下容易被困住，即曲面的一个方向比另一个方向更陡，这时SGD会发生震荡而迟迟不能接近极小值。
 
 $$
@@ -130,7 +130,7 @@ v_{t}=\eta\ \cdot\nabla_{\theta}J(\theta-\gamma v_{t-1})+\gamma v_{t-1}
 \\
 \theta=\theta-v_{t}
 $$
-![图片](2.png)
+![图片](https://paichin.github.io/assets/images4post/4_2.png)
 超参数：$\gamma$一般取值仍为0.9。
 
 ### 4.Adagrad
@@ -213,8 +213,8 @@ keras默认参数：lr=0.001,beta_1=0.9,beta_2=0.999,epsilon=1e-8
 
 
 ### 各方法的比较（参考图）
-![图片](3.gif)
-![图片](4.gif)
+![图片](https://paichin.github.io/assets/images4post/4_3.gif)
+![图片](https://paichin.github.io/assets/images4post/4_4.gif)
 
 ### 如何选择优化算法
 1、如果数据是稀疏的，用自适应方法较好，如Adagrad, Adadelta, RMSprop, Adam。
@@ -227,9 +227,9 @@ keras默认参数：lr=0.001,beta_1=0.9,beta_2=0.999,epsilon=1e-8
 
 
 ### 为什么神经网络不采用二阶优化方法
-![图片](5.png)
+![图片](https://paichin.github.io/assets/images4post/4_5.png)
 ### 优化SGD的其它手段
-![图片](6.png)
+![图片](https://paichin.github.io/assets/images4post/4_6.png)
 
 参考：
 <br>https://ruder.io/optimizing-gradient-descent/index.html#fn4
