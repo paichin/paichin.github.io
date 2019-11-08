@@ -1,4 +1,9 @@
-# 深度学习的初始化方法和优化方法
+---
+title: 深度学习的初始化方法和优化方法
+layout: post
+categories: 'Machine Learning'
+tags: ''
+---
 
 ## <u>PART I 初始化方法</u>
 
