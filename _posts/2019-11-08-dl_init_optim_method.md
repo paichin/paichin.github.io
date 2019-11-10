@@ -61,6 +61,7 @@ tags: ''
 
 
 ### 4.Kaiming初始化
+没时间整理了，简单说一下吧，这里考虑的是Relu激活函数，发现一层之后的偏差约为$\sqrt{n}/\sqrt{2}$。因此Kaiming初始化就是先取标准正态分布进行初始化，然后除以$\sqrt{n}/\sqrt{2}$的收缩比例，主要针对的是Relu初始化。初始偏置置为0。比起Xavier初始化，这个方法很好解决了Relu激活函数带来的梯度消失问题。
 
 
 [英文原文](https://towardsdatascience.com/weight-initialization-in-neural-networks-a-journey-from-the-basics-to-kaiming-954fb9b47c79)
