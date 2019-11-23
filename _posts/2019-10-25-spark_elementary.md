@@ -87,7 +87,8 @@ reduce task会通过网络将各个数据收集进行reduce处理，最后将数
 <br>
 
 * hadoop和spark的shuffle
-
+hadoop：map端保存分片数据，通过网络收集到reduce端
+spark：spark的shuffle是在DAGSchedular划分Stage的时候产生的，TaskScheduler要分发Stage到各个worker的executor，减少shuffle可以提高性能
 详细介绍在[这里](https://www.cnblogs.com/itboys/p/9226479.html)
 
 * hadoop和spark的shuffle相同之处
@@ -102,6 +103,40 @@ Hadoop MapReduce是sort-based，进入combine()和reduce()的records 必须先so
 
 Spark默认选择hash-based，通常使用HashMap来对shuffle来的数据进行aggregate，不提前排序。如果用户需要经过排序的数据，可以用sortByKey()。
 
+### 5. 基础习题
+
+* TopN问题
+```
+data.map(x=>(x,1)).reduceByKey(_+_).map(r=>r._2,r._1).sortByKey(false).map(r=>r._1,r._2) take N
+```
+
+* dataframe根据两列排序，一列升序一列降序
+```
+val df = Seq(
+		(2,6),(1,2),(1,3),(1,5)
+	).toDF("A","B")
+df.orderBy($"A",$"B".desc)
+```
+* rdd分组排序，每组取top(N)
+```
+#主要代码
+val groups=lines.groupByKey()
+val groupsSort=groups.map(tu=>{
+	val key=tu._1
+    val values=tu._2
+    val sortValues=values.toList.sortWith(_>_).take(4)
+    (key,sortValues)
+    })
+groupsSort.sortBy(tu=>tu._1, false, 1)
+```
+
+* 给定a、b两个文件，各存放50亿个url，每个url各占64字节，内存限制是4G，找出a、b中共同的url
+```
+可以估计每个文件安的大小为320G，远远大于内存限制的4G。所以不可能将其完全加载到内存中处理。考虑采取分而治之的方法。
+遍历文件a，对每个url求取hash(url)%1000，然后根据所取得的值将url分别存储到1000个小文件(记为a0,a1,…,a999)中。这样每个小文件的大约为300M。
+遍历文件b，采取和a相同的方式将url分别存储到1000小文件(记为b0,b1,…,b999)。这样处理后，所有可能相同的url都在对应的小文件(a0vsb0,a1vsb1,…,a999vsb999)中，不对应的小文件不可能有相同的url。然后我们只要求出1000对小文件中相同的url即可。
+求每对小文件中相同的url时，可以把其中一个小文件的url存储到hash_set中。然后遍历另一个小文件的每个url，看其是否在刚才构建的hash_set中，如果是，那么就是共同的url，存到文件里面就可以了。
+```
 <br>
 未完待续。有两张图挺好的，先贴在下面吧：
 
